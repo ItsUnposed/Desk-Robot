@@ -1,6 +1,4 @@
-//-----------------
-//--- OLED BEGIN---
-//-----------------
+#include "OLED-variables.h"
 
 U8G2_SH1107_PIMORONI_128X128_F_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE);
 
@@ -20,6 +18,3 @@ unsigned long sleepStartedAt;
 
 bool asleep = false;
 
-//----------------
-//--- OLED END ---
-//----------------
