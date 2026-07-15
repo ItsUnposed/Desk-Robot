@@ -1,35 +1,55 @@
 # Desk-Robot
 
-## About
+A small desk robot that reacts to its surroundings and shows an animated face on a display. This repository holds the code, hardware notes, and future modules for the project.
 
-This repository is the home for a small desk robot project. The end goal is a self-contained little device that sits on a desk, reacts to its surroundings and shows a face with animated eyes on a display. Everything for the robot — code, hardware notes, future modules — will live here as the project grows.
+## Status
 
-Right now, the repo contains the first working piece: an OLED display showing two animated eyes, driven purely by timing (no sensors or randomness yet).
+The project currently contains one finished piece: an OLED display that shows two animated eyes. The animations run purely on fixed timers — there are no sensors and no randomness yet.
 
-## Current feature: OLED eyes
+## Table of Contents
 
-Two rounded rectangles act as "eyes" and run different animations on fixed time intervals:
+- [Current Feature: OLED Eyes](#current-feature-oled-eyes)
+- [Hardware](#hardware)
+- [Getting Started](#getting-started)
+- [Roadmap](#roadmap)
+- [License](#license)
 
-| Animation    | Timing                                  | Description |
-|--------------|------------------------------------------|--------------|
-| `normal`     | on startup                                | Eyes resting, open |
-| `blink`      | ~every 30 seconds                         | Quick close and open |
-| `watchLeft`  | ~every 10 min (offset timing)             | Eyes shift left and back |
-| `watchRight` | ~every 10 min (offset timing)             | Eyes shift right and back |
-| `observe`    | ~every 10 min (offset timing)             | Eyes sweep in a curve |
-| `sleep`      | exactly every hour                        | Eyes close, "Z" symbols appear |
-| `wakeUp`     | automatically after `sleep`               | Eyes open again |
+## Current Feature: OLED Eyes
 
-`watchLeft`, `watchRight`, and `observe` are staggered on startup so they don't fire at the same time. `sleep` takes priority over everything else so animations never overlap.
+Two rounded rectangles represent the robot's eyes. Each animation triggers on its own fixed time interval.
+
+| Animation    | Trigger                       | Description                              |
+|--------------|--------------------------------|-------------------------------------------|
+| `normal`     | On startup                     | Eyes resting, open                        |
+| `blink`      | Every ~30 seconds               | Quick close and open                      |
+| `watchLeft`  | Every ~10 minutes (offset)       | Eyes shift left and back                  |
+| `watchRight` | Every ~10 minutes (offset)       | Eyes shift right and back                 |
+| `observe`    | Every ~10 minutes (offset)       | Eyes sweep in a curve                     |
+| `sleep`      | Every hour, exactly              | Eyes close, "Z" symbols appear            |
+| `wakeUp`     | Automatically after `sleep`     | Eyes open again                           |
+
+**Timing notes:**
+
+- `watchLeft`, `watchRight`, and `observe` each start with a different offset when the device boots, so the three animations do not fire at the same moment.
+- `sleep` has priority over every other animation. If a `sleep` cycle is due, no other animation is allowed to run at the same time, which keeps the animations from overlapping.
 
 ## Hardware
 
-- Arduino Nano ESP32
-- SH1107-based OLED display, 128x128, I2C
+The current build uses the following components:
+
+| Component        | Detail                                   |
+|-------------------|-------------------------------------------|
+| Microcontroller   | Arduino Nano ESP32                        |
+| Display           | SH1107-based OLED, 128×128 pixels, I2C bus |
+
+## Getting Started
+
+> This section is a placeholder. 
+
 
 ## Roadmap
 
-- Sensors (proximity, sound, etc.) so the robot reacts to its environment
-- Motors, if the robot should move or turn its head
-- Enclosure/housing
-- Possibly rewriting animations to be non-blocking (`millis()`-based instead of `delay()`) once other tasks need to run concurrently
+- [ ] Add sensors (proximity, sound, etc.) so the robot can react to its environment.
+- [ ] Add motors, if the robot should move or turn its head.
+- [ ] Design an enclosure/housing.
+- [ ] Rewrite animations to be non-blocking (`millis()`-based instead of `delay()`-based) once other tasks need to run at the same time as the animations.
