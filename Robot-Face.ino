@@ -19,7 +19,7 @@ void setup() {
 void loop()
 {
   normal();
-  blink();
+  observe();
   delay(1000);
 }
 
