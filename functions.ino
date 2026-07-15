@@ -38,6 +38,48 @@ void wakeUp()
   blinkOpen();
 }
 
+void watchLeft()
+{
+  for (int i = 0; i < 15; i++)
+  {
+    u8g2.clearBuffer();
+    u8g2.drawRBox(17 - i, 40, 38, 38, 3);
+    u8g2.drawRBox(74 - 1.5* i, 40, 38, 38, 3);
+    delay(2);
+    u8g2.sendBuffer();
+  }
+  delay(1000);
+  for (int i = 0; i < 15; i++)
+  {
+    u8g2.clearBuffer();
+    u8g2.drawRBox(3 + i, 40, 38, 38, 3);
+    u8g2.drawRBox(53 + 1.5* i, 40, 38, 38, 3);
+    delay(2);
+    u8g2.sendBuffer();
+  }
+}
+
+void watchRight()
+{
+  for (int i = 0; i < 15; i++)
+  {
+    u8g2.clearBuffer();
+    u8g2.drawRBox(17 + 1.5 * i, 40, 38, 38, 3);
+    u8g2.drawRBox(74 + i, 40, 38, 38, 3);
+    delay(2);
+    u8g2.sendBuffer();
+  }
+  delay(1000);
+  for (int i = 0; i < 15; i++)
+  {
+    u8g2.clearBuffer();
+    u8g2.drawRBox(38 - 1.5*i, 40, 38, 38, 3);
+    u8g2.drawRBox(88 - i, 40, 38, 38, 3);
+    delay(2);
+    u8g2.sendBuffer();
+  }
+}
+
 void observe()
 {
   for (int i = 0; i < 15; i++)

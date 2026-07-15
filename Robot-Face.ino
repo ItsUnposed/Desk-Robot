@@ -18,9 +18,6 @@ void setup() {
 
 void loop()
 {
-  normal();
-  sleep();
-  wakeUp();
-  delay(1000);
+  
 }
 
