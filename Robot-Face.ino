@@ -19,7 +19,8 @@ void setup() {
 void loop()
 {
   normal();
-  observe();
+  sleep();
+  wakeUp();
   delay(1000);
 }
 

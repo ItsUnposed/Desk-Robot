@@ -14,6 +14,30 @@ void blink()
   blinkOpen();
 }
 
+void sleep()
+{
+  blinkClose();
+  for (int i = 0 ; i < 3; i++)
+  {
+    u8g2.drawStr(90 + 10 * i, 44 - 10 * i, "Z");
+    u8g2.sendBuffer();
+    delay(500);
+  }
+}
+
+void wakeUp()
+{
+  u8g2.setDrawColor(2);
+  for (int i = 0 ; i < 3; i++)
+  {
+    u8g2.drawStr(110 - 10 * i, 24 + 10 * i, "Z");
+    u8g2.sendBuffer();
+    delay(500);
+  }
+  u8g2.setDrawColor(1);
+  blinkOpen();
+}
+
 void observe()
 {
   for (int i = 0; i < 15; i++)
