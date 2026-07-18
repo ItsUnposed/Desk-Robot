@@ -6,15 +6,16 @@ void chooseFace()
     unsigned long now = millis();
 
     // Solange die Augen geschlossen sind, keine anderen Animationen starten
-    while (asleep) {
-        if (giveRes() > 1500) {
+    if (asleep) {
+        if (giveRes() > 1000) {
             wakeUp();
             asleep = false;
         }
+        return;
     }
 
     // Schlafen hat Vorrang vor allen anderen Animationen
-    if (giveRes() < 500) {
+    if (giveRes() < 200) {
         sleep();
         asleep = true;
         return;
