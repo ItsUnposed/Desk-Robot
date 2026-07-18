@@ -52,7 +52,7 @@ void OLEDsetup()
     unsigned long now = millis();
     lastBlink      = now;
     lastWatchLeft  = now;
-    lastWatchRight = now - 3UL * 60UL * 1000UL; // 3 Minuten Versatz
-    lastObserve    = now - 6UL * 60UL * 1000UL; // 6 Minuten Versatz
+    lastWatchRight = now - 2UL * 60UL * 1000UL; // 2 Minuten Versatz
+    lastObserve    = now - 4UL * 60UL * 1000UL; // 4 Minuten Versatz
     normal();
 }
