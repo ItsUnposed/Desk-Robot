@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include "OLED-Display/OLED-main/OLED-main.h"
+#include "Sensors/Photoresistor/photoresistor.h"
 
 void setup() {
     Serial.begin(115200);
@@ -9,4 +10,5 @@ void setup() {
 
 void loop() {
     chooseFace();
+    printRes();
 }

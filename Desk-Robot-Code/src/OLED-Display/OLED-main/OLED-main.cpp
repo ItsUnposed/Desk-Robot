@@ -1,30 +1,23 @@
 #include "OLED-main.h"
+#include "Sensors/Photoresistor/photoresistor.h"
 
 void chooseFace()
 {
     unsigned long now = millis();
 
     // Solange die Augen geschlossen sind, keine anderen Animationen starten
-    if (asleep) {
-        if (now - sleepStartedAt >= SLEEP_DURATION) {
+    while (asleep) {
+        if (giveRes() > 1500) {
             wakeUp();
             asleep = false;
         }
-        return;
     }
 
     // Schlafen hat Vorrang vor allen anderen Animationen
-    if (now - lastSleep >= SLEEP_INTERVAL) {
+    if (giveRes() < 500) {
         sleep();
-        lastSleep = now;
-        sleepStartedAt = now;
         asleep = true;
         return;
-    }
-
-    if (now - lastBlink >= BLINK_INTERVAL) {
-        blink();
-        lastBlink = now;
     }
 
     if (now - lastWatchLeft >= WATCH_LEFT_INTERVAL) {
@@ -41,14 +34,16 @@ void chooseFace()
         observe();
         lastObserve = now;
     }
+
+    if (now - lastBlink >= BLINK_INTERVAL) {
+        blink();
+        lastBlink = now;
+    }
 }
 
 void OLEDsetup()
 {
-    if (!u8g2.begin()) {
-        Serial.println("Display Error!");
-        while (1);
-    }
+    while (!u8g2.begin());
 
     u8g2.setDisplayRotation(U8G2_R0);
     u8g2.setFont(u8g2_font_ncenB08_tr);
@@ -59,7 +54,5 @@ void OLEDsetup()
     lastWatchLeft  = now;
     lastWatchRight = now - 3UL * 60UL * 1000UL; // 3 Minuten Versatz
     lastObserve    = now - 6UL * 60UL * 1000UL; // 6 Minuten Versatz
-    lastSleep      = now;
-
     normal();
 }
