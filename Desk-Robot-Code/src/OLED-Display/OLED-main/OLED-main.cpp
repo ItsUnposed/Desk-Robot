@@ -9,7 +9,6 @@ void chooseFace()
         if (asleep) {
             if (giveRes() > 200) {
                 wakeUp();
-                asleep = false;
             }
             return;
         }
@@ -17,7 +16,6 @@ void chooseFace()
         // Schlafen hat Vorrang vor allen anderen Animationen
         if (giveRes() < 200) {
             sleep();
-            asleep = true;
             return;
         }
 

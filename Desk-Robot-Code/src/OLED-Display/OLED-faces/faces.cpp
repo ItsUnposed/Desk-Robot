@@ -17,6 +17,7 @@ void blink()
 
 void sleep()
 {
+  asleep = true;
   blinkClose();
   for (int i = 0 ; i < 3; i++)
   {
@@ -28,6 +29,7 @@ void sleep()
 
 void wakeUp()
 {
+  asleep = false;
   u8g2.setDrawColor(2);
   for (int i = 0 ; i < 3; i++)
   {
