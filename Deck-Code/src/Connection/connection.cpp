@@ -15,6 +15,12 @@ void connectionSetup() {
     pinMode(button3, INPUT);
     pinMode(button4, INPUT);
     pinMode(button5, INPUT);
+    pinMode(button6, INPUT);
+    pinMode(button7, INPUT);
+    pinMode(button8, INPUT);
+    pinMode(button9, INPUT);
+
+    pinMode(button10, INPUT);
     WiFi.mode(WIFI_STA);
     if (esp_now_init() != ESP_OK) {
         Serial.println("ESP-NOW Fehler");
@@ -32,6 +38,11 @@ void connectionLoop() {
     data.state_button3 = digitalRead(button3);
     data.state_button4 = digitalRead(button4);
     data.state_button5 = digitalRead(button5);
+    data.state_button6 = digitalRead(button6);
+    data.state_button7 = digitalRead(button7);
+    data.state_button8 = digitalRead(button8);
+    data.state_button9 = digitalRead(button9);
+    data.state_button10 = digitalRead(button10);
     esp_now_send(broadcastAddress, (uint8_t *) &data, sizeof(data));
     delay(20); // 50 Hz
 }

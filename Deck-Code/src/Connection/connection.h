@@ -13,6 +13,12 @@ struct Payload {
     int state_button3;
     int state_button4;
     int state_button5;
+    int state_button6;
+    int state_button7;
+    int state_button8;
+    int state_button9;
+
+    int state_button10;
     uint8_t status;
 };
 

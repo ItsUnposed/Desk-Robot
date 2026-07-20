@@ -13,4 +13,5 @@ unsigned long lastWatchRight;
 unsigned long lastObserve;
 
 bool asleep = false;
+bool toggleTime = true;
 

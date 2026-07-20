@@ -18,5 +18,6 @@ extern unsigned long lastWatchRight;
 extern unsigned long lastObserve;
 
 extern bool asleep;
+extern bool toggleTime;
 
 #endif //CLIONPROJECTS_OLED_VARIABLES_H

@@ -1,44 +1,45 @@
 #include "OLED-main.h"
-#include "Sensors/Photoresistor/photoresistor.h"
 
 void chooseFace()
 {
     unsigned long now = millis();
 
     // Solange die Augen geschlossen sind, keine anderen Animationen starten
-    if (asleep) {
-        if (giveRes() > 1000) {
-            wakeUp();
-            asleep = false;
+    if (toggleTime) {
+        if (asleep) {
+            if (giveRes() > 200) {
+                wakeUp();
+                asleep = false;
+            }
+            return;
         }
-        return;
-    }
 
-    // Schlafen hat Vorrang vor allen anderen Animationen
-    if (giveRes() < 200) {
-        sleep();
-        asleep = true;
-        return;
-    }
+        // Schlafen hat Vorrang vor allen anderen Animationen
+        if (giveRes() < 200) {
+            sleep();
+            asleep = true;
+            return;
+        }
 
-    if (now - lastWatchLeft >= WATCH_LEFT_INTERVAL) {
-        watchLeft();
-        lastWatchLeft = now;
-    }
+        if (now - lastWatchLeft >= WATCH_LEFT_INTERVAL) {
+            watchLeft();
+            lastWatchLeft = now;
+        }
 
-    if (now - lastWatchRight >= WATCH_RIGHT_INTERVAL) {
-        watchRight();
-        lastWatchRight = now;
-    }
+        if (now - lastWatchRight >= WATCH_RIGHT_INTERVAL) {
+            watchRight();
+            lastWatchRight = now;
+        }
 
-    if (now - lastObserve >= OBSERVE_INTERVAL) {
-        observe();
-        lastObserve = now;
-    }
+        if (now - lastObserve >= OBSERVE_INTERVAL) {
+            observe();
+            lastObserve = now;
+        }
 
-    if (now - lastBlink >= BLINK_INTERVAL) {
-        blink();
-        lastBlink = now;
+        if (now - lastBlink >= BLINK_INTERVAL) {
+            blink();
+            lastBlink = now;
+        }
     }
 }
 

@@ -3,6 +3,7 @@
 #include <U8g2lib.h>
 #include "../OLED-faces/faces.h"
 #include "../OLED-variables/OLED-variables.h"
+#include "Sensors/Photoresistor/photoresistor.h"
 
 #ifndef CLIONPROJECTS_OLED_MAIN_H
 #define CLIONPROJECTS_OLED_MAIN_H

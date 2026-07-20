@@ -13,10 +13,18 @@ struct Payload {
     int state_button3;
     int state_button4;
     int state_button5;
+    int state_button6;
+    int state_button7;
+    int state_button8;
+    int state_button9;
+
+    int state_button10;
     uint8_t status;
 };
 
-extern int prev_button1, prev_button2, prev_button3, prev_button4, prev_button5;
+extern int prev_button1, prev_button2, prev_button3, prev_button4, prev_button5,
+prev_button6, prev_button7, prev_button8 , prev_button9, prev_button10;
+extern bool toggleDeck;
 
 extern Payload data;
 
